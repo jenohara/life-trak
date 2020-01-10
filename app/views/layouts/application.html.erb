@@ -10,10 +10,17 @@
   </head>
 
   <body>
-  <nav>
-  <%= link_to 'Log out', logout_path, method: :delete %>
 
+  
+  <nav class="navbar">
+    <%= link_to 'Log Out', logout_path, method: :delete, class: 'navlink' %>
   </nav>
+  
+
     <%= yield %>
+
+    <footer class="branding">
+        <small>&copy; 2020 <strong>J.O'Hara</strong></small>
+      </footer>
   </body>
 </html>
