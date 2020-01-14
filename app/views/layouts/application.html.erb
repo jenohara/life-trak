@@ -15,7 +15,8 @@
   <nav class="navbar">
     <%= link_to 'Log Out', logout_path, method: :delete, class: 'navlink' %>
   </nav>
-  
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
     <%= yield %>
 
