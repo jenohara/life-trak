@@ -1,9 +1,7 @@
-<h1>WELCOME TO LIFETRAK!</h1>
-<% if session[:user_id] %>
-    <h1>Hello, <%= @user.username %></h1>
-    <h2>Email: <%= @user.email %></h2>
+<% if user_signed_in? %>
+    <h1>Welcome</h1>
+    
 <% else %>
+    <h1>WELCOME TO LIFETRAK!</h1>
     <h2>Please register or login!</h2>
-    <%= link_to 'Sign Up', signup_path %>
-    <%= link_to 'Log in', login_path %>
 <% end %>
