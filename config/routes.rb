@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   #get '/users/edit' => 'devise/registrations#edit'
   #post '/users/edit' => 'devise/registrations#edit'
 
-  #resources :users #, only: [:index, :new, :create, :edit]
+  resources :users , only: [:show, :new, :create, :edit]
   #get '/users/:id', to: 'users#show', as: 'user'
 end

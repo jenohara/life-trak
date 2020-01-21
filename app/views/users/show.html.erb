@@ -1,13 +1,6 @@
 <h1>Welcome, <%= @user.username %>!</h1>
-<h2>What would you like to do today?</h2>
-  
-<ul>
-   <li>Create a new journal entry</li>
-   <li>Create a new list</li>
-</ul>
-
-<h3>Your last journal entry:</h3>
-
-<h3>Your most common moods:</h3>
-
-<h3>Your lists:</h3>
+<h2>Your account details are:</h2>
+<p>Username:  <%= @user.username %></p> 
+<p>Email address: <%= @user.email %></p>
+<p>Account created: <%= @user.created_at %></p>
+<p><%= link_to 'Edit Details', edit_user_registration_path %></p>

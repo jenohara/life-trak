@@ -3,7 +3,7 @@ class UsersController < ApplicationController
     end
 
     def show 
-        @user = User.find_by(id: session[:id])
+        @user = current_user
     end
 
     def new
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :email, :password)
+        params.require(:user).permit(:username, :email, :password, :password_confirmation)
     end
 end
 
