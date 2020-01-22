@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
 
-  devise_for :users
-  root 'welcome#home'
-  #get 'welcome/home' => 'welcome#home'
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
-  #get '/auth/google/callback' => 'sessions#create'
+  root 'welcome#home'
+
+  
+  #get 'welcome/home' => 'welcome#home'
   
   #get '/signup' => "users#new"
   #get '/login' => 'sessions#new'
@@ -13,6 +14,9 @@ Rails.application.routes.draw do
   #get '/users/edit' => 'devise/registrations#edit'
   #post '/users/edit' => 'devise/registrations#edit'
 
-  resources :users , only: [:show, :new, :create, :edit]
+  resources :users, only: [:show, :new, :create, :edit]
   #get '/users/:id', to: 'users#show', as: 'user'
+  resources :journals  #do 
+    #resources :entries
+  #end
 end
