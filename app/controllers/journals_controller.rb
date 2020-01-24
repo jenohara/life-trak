@@ -2,11 +2,10 @@ class JournalsController < ApplicationController
 
     def index
         @journals = Journal.all
-    
     end
 
     def show
-        @journal = Journal.find_by(id: params[:id])
+        set
     end
 
     def new
@@ -24,14 +23,29 @@ class JournalsController < ApplicationController
     end
 
     def edit
-        @journal = Journal.find(params[:id])
+        set_journal
+    end
+
+    def update
+        set_journal
+        if journal.update(journal_params)
+            redirect_to @journal
+        else
+            render :edit
+        end 
     end
 
     def destroy
-
+       set_journal
+       @journal.destroy
+       redirect_to journals_path
     end
 
     private
+
+    def set_journal
+        @journal = Journal.find(id: params[:id])
+    end 
 
     def journal_params
         params.require(:journal).permit(:title, :description)
