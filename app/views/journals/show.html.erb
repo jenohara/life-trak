@@ -2,5 +2,6 @@
 <h2>It's about: <%=@journal.description %> </h2>
 
 <h3>New entry:</h3>
+<%= render partial:'entries/form', locals:{entry: @journal.entries} %>
 
 <h3>My entries:</h3>

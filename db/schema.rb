@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_22_182618) do
+ActiveRecord::Schema.define(version: 2020_01_22_195912) do
+
+  create_table "entries", force: :cascade do |t|
+    t.date "date"
+    t.string "content"
+    t.integer "journal_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "journals", force: :cascade do |t|
     t.string "title"
