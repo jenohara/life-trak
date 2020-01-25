@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :mood_entries
-  resources :moods
+  
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   root 'welcome#home'
@@ -11,6 +10,6 @@ Rails.application.routes.draw do
   resources :journals do
     resources :entries
   end
-
+  resources :moods
   resources :entries
 end
