@@ -1,4 +1,4 @@
 class MoodEntry < ApplicationRecord
-    belongs_to :journal
+    belongs_to :entry
     belongs_to :mood
 end
