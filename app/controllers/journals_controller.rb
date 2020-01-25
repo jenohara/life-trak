@@ -5,7 +5,7 @@ class JournalsController < ApplicationController
     end
 
     def show
-        set
+        set_journal
     end
 
     def new
@@ -44,7 +44,7 @@ class JournalsController < ApplicationController
     private
 
     def set_journal
-        @journal = Journal.find(id: params[:id])
+        @journal = Journal.find_by(id: params[:id])
     end 
 
     def journal_params
