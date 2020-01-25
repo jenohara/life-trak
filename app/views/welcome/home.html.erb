@@ -2,7 +2,11 @@
 <% if user_signed_in? %>
     <h1>Welcome, <%= @user.username %></h1>
     <h3>Email address: <%= @user.email %></h3>
-    <%= link_to 'My details', '/users/show' %>
+    <br><br>
+    <p>What would you like to do today?</p>
+    <%= link_to 'My Details', '/users/show' %>
+    <%= link_to 'My Journals', journals_path %>
+    <%= link_to 'My Moods', moods_path %>
 <% else %>
     <h1>WELCOME TO LIFETRAK!</h1>
     <h2>Please register or login!</h2>
