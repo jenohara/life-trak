@@ -1,14 +1,13 @@
 class User < ApplicationRecord  
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-    devise :database_authenticatable, :registerable,
+  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true, format: {with: /\A[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}\z/i, message: "invalid email address"}
+
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable, omniauth_providers: %i[github]
          #has_secure_password
     
     has_many :journals
     has_many :entries, :through => :journals
-
-    validates :username, :email, presence: true
 
     def self.from_omniauth(auth)
      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

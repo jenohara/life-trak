@@ -5,4 +5,5 @@ class Journal < ApplicationRecord
     
     has_many :entries
     has_many :moods, :through => :entries
+    accepts_nested_attributes_for :entries
 end
