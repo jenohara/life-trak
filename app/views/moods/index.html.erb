@@ -1,0 +1,9 @@
+<div class="main_body">
+    <h1>All your moods!</h1>
+    <% @moods.each do |mood| %>
+        <p><%= mood.mood_type %> - <%= link_to "Delete", mood_path(mood), method: :delete %></p>
+    <% end %>
+
+    <h1>Add a new mood</h1>
+    <%= render partial: 'new', locals: {object: @mood} %>
+</div>

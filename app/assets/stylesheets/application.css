@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+ body {
+    background-image: url("abstract-2384_1920.jpg");
+}
+
+.navbar {
+    background-color: white;
+    opacity: 0.6;
+}
+
+.main_body {
+    background-color: white;
+    opacity: 0.6;
+    text-align: center;
+    margin: auto;
+}
+

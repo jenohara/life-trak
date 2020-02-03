@@ -1,0 +1,10 @@
+<div class="main_body">
+    <h1><%= @journal.title %>
+    <h2>Here are all the entries for this journal:</h2>
+    <% @entries.each do |entry| %>
+        <h3><%= entry.date %>:<h3> 
+        <p><%= entry.content %><br>
+        <%= link_to "Edit entry", edit_entry_path(entry) %>
+        <hr>
+    <% end %>
+</div>

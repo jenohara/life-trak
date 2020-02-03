@@ -1,6 +1,8 @@
-<h1>Welcome, <%= @user.username %>!</h1>
-<h2>Your account details are:</h2>
-<p>Username:  <%= @user.username %></p> 
-<p>Email address: <%= @user.email %></p>
-<p>Account created: <%= @user.created_at %></p>
-<p><%= link_to 'Edit Details', edit_user_registration_path %></p>
+<div class="main_body">
+    <h1>Welcome, <%= @user.username %>!</h1>
+    <h2>Your account details are:</h2>
+    <p>Username:  <%= @user.username %></p> 
+    <p>Email address: <%= @user.email %></p>
+    <p>Account created: <%= @user.created_at %></p>
+    <p><%= link_to 'Edit Details', edit_user_registration_path %></p>
+</div>

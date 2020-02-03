@@ -1,0 +1,15 @@
+<div class="main_body">
+    <h2>Here is your entry for: <%= @entry.date %></h2>
+    <p><%= @entry.content %></p>
+
+    <h3>Moods of the day:</h3>
+    <% @entry.moods.each do |mood| %>
+        <ul>
+            <%= mood.mood_type %>
+        </ul>
+    <% end %>
+    <br>
+    <%= link_to 'Edit entry', edit_entry_path %>
+    <%= link_to 'Delete entry', entry_path %>
+    <%= link_to 'Back to journal', journal_path(@entry.journal) %>
+</div>

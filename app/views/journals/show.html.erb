@@ -1,7 +1,27 @@
+<div class="main_body">
+<div class="journal_links">
+<%= link_to 'Edit journal details', edit_journal_path %> | 
+<%= link_to 'Delete journal', @journal, :method => :delete, :confirm => 'Are you sure?'%> | 
+<%= link_to 'New entry', new_journal_entry_path(@journal) %> | 
+<%= link_to 'All Entries', journal_entries_path(@journal) %><br>
+</div>
 <h1>This is: <%= @journal.title %></h1>
-<h2>It's about: <%=@journal.description %> </h2>
+    <h2>It's about: <%=@journal.description %> </h2>
+    
+    <p>There are <%= @entries.count %> entries in this journal.</p>
+    <% if @entries.count > 1 %>
+        <p>This was the most recent entry:</p>
+        <p>Date: <%= @entries.last.date %> <p>
+        <p>Content:</p> 
+        <p><%= @entries.last.content %></p>
+        <p>Moods:</p>
+    <% else %>
+        <p>There are no entries yet! Would you like to write one now?</p>
+        <%= link_to 'New entry', new_journal_entry_path(@journal) %> 
+    <% end %>
 
-<h3>New entry:</h3>
-<%= render partial:'entries/form', locals:{entry: @journal.entries} %>
 
-<h3>My entries:</h3>
+    
+
+
+</div>
