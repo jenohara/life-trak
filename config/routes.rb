@@ -6,10 +6,12 @@ Rails.application.routes.draw do
   root 'welcome#home'
 
   resources :users, only: [:show, :new, :create, :edit] 
+  resources :journals
+  resources :entries
+  resources :moods
 
   resources :journals do
     resources :entries
   end
-  resources :moods
-  resources :entries
+ 
 end
