@@ -14,4 +14,7 @@ Rails.application.routes.draw do
     resources :entries
   end
  
+  resources :entries do
+    resources :moods 
+  end
 end
