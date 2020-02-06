@@ -1,11 +1,16 @@
-<%= form_for :entry do |f| %>
+<%= form_for ([@entry.journal, @entry]) do |f| %>
     <p>
-      <%= f.label :date %><br>
+      <h3><%= f.label :date %></h3>
       <%= f.date_field :date %>
     </p>
     <p>
-      <%= f.label :content %><br>
+      <h3><%= f.label :content %></h3>
       <%= f.text_area :content, cols: "70", rows: "10" %>
     </p>
-      <%= f.submit %>
+
+     <%= f.collection_check_boxes :mood_ids, Mood.all, :id, :mood_type %>
+   
+    <br>
+    <h3><%= f.submit %></h3>
+    
 <% end %>

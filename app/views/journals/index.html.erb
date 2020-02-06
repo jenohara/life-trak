@@ -1,22 +1,13 @@
 <div class="main_body">
-  <% if @journal.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@journal.errors.count, "error") %> prohibited this journal from being saved:</h2>
-
-    <ul>
-    <% @journal.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-    </ul>
-  </div>
-  <% end %>
+<%= render 'errors', journal: @journal%>
 
   <h1>Here are all your journals:</h1>
 
       <% @journals.each do |journal| %>
-        <p> <%= link_to "#{journal.title} ", journal_path(journal) %> - <%= link_to "Edit", edit_journal_path(journal) %></p>
-      <% end %>
+        <h3> <%= link_to "#{journal.title} ", journal_path(journal) %></h3> <%= link_to "Edit", edit_journal_path(journal) %> | <%= link_to "Delete Journal", journal_path(journal), method: :delete, data: {confirm: "Are you sure? This will delete the connected entries too" } %></p>
+        <hr>
+        <% end %>
 
   <h2>Create a new journal:</h2>
-  <%= render partial:'form', locals:{journal: @journal} %>
+  <%= render 'form', journal: @journal %>
 </div>

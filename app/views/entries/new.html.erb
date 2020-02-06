@@ -1,18 +1,11 @@
 <div class="main_body">
-  <%= form_for ([@entry.journal, @entry]) do |f| %>
-      <p>
-        <h3><%= f.label :date %></h3>
-        <%= f.date_field :date %>
-      </p>
-      <p>
-        <h3><%= f.label :content %></h3>
-        <%= f.text_area :content, cols: "70", rows: "10" %>
-      </p>
+  <div class="entry_links">
+    <%= link_to 'Back to journal', journal_path(@entry.journal) %><br>
+  </div>
 
-      <h3><%= fields_for @entry.moods  do |f| %></h3>
-        <%= f.collection_check_boxes :mood_ids, Mood.all, :id, :mood_type %><br><br>
-        <%end%>
-      <%= f.submit %>
-      
-  <% end %>
+  <%= render 'errors', entry: @entry%>
+
+<h1>Create a new entry:</h1>
+<%= render 'form', entry: @entry%>
+
 </div>

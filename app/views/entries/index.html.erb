@@ -1,10 +1,22 @@
 <div class="main_body">
-    <h1><%= @journal.title %>
+    <div class="entry_links">
+        <%= link_to 'New entry', new_journal_entry_path(@journal) %> | 
+        <%= link_to 'Back to journal', journal_path(@journal) %><br>
+    </div>
+    <h1><%= @journal.title %></h1>
     <h2>Here are all the entries for this journal:</h2>
+
+
+    <br>
     <% @entries.each do |entry| %>
-        <h3><%= entry.date %>:<h3> 
-        <p><%= entry.content %><br>
-        <%= link_to "Edit entry", edit_entry_path(entry) %>
+        <h3><%= entry.date %>:</h3> 
+        <p><%= entry.content %></p>
+        <p>The moods for this entry are:
+        <% entry.moods.each do|mood| %>
+            <%= mood.mood_type %> 
+        <% end %></p>
+        <br>  
+        <%= link_to "Edit entry", edit_entry_path(entry) %> | <%= link_to "Delete Entry", entry_path(entry), method: :delete, data: {confirm: "Are you sure?"} %>
         <hr>
     <% end %>
 </div>
