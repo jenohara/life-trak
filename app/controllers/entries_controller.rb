@@ -1,36 +1,95 @@
 class EntriesController < ApplicationController
 
     def index
-        @journal = User.journals.find(id = params[:id])
-        @entries = @journal.all
-    end
-
-    def show
-        @entry = .find_by(id: params[:id])
+      if user_signed_in?  
+        @journal = Journal.find_by(id: params[:journal_id])
+            if @journal.entries.any?
+                @entries = @journal.entries.order(date: :desc)
+            else
+                @entries = []
+            end
+        else
+            redirect_to "welcome/home"
+        end
     end
 
     def new
-        @entry = Entry.new
+        if user_signed_in? 
+            if params[:journal_id] && @journal = Journal.find_by(id: params[:journal_id]) 
+            @entry = @journal.entries.build  
+            @new_mood = Mood.new  
+            else
+                @entry = Entry.new 
+            end
+        else
+            redirect_to "welcome/home"
+        end
     end
 
     def create
-        @entry = Journal.entries.build(entry_params)
-        if @entry.save
-            redirect_to entry_path
+        if user_signed_in? 
+            @journal = Journal.find_by(id: params[:journal_id])
+            @entry = @journal.entries.build(entry_params) 
+            @entry.user = current_user
+            if @entry.save 
+                redirect_to journal_path(@entry.journal_id)
+            else
+                render :new
+            end
         else
-            render 'journal/show'
+            redirect_to "welcome/home"
+        end
+    end
+
+    def show
+        if user_signed_in? 
+            set_entry
+            redirect_to journal_entry_path(@entry)
+        else
+            redirect_to "welcome/home"
         end
     end
 
     def edit
+        if user_signed_in?
+            set_entry
+        else
+            redirect_to "welcome/home"
+        end
     end
 
-    def destroy
+    def update
+        if user_signed_in?
+            set_entry
+            @entry.update(entry_params)
+            redirect_to journal_path(@entry.journal), notice: "Entry Successfully Updated"
+        else
+            redirect_to "welcome/home"
+        end
+    end
+
+    def destroy 
+        if user_signed_in?
+            set_entry
+            @entry.destroy 
+            redirect_to journal_path(@entry.journal)
+        else
+            redirect_to "welcome/home"
+        end
     end
 
     private
-    def entry_params
-        params.require(:entry).permit(:date, :content)
+
+    def set_journal
+        @journal = Journal.find_by(id: params[:journal_id])
     end
 
+    def set_entry
+        @entry = current_user.entries.find(params[:id])
+        #@entry = @journal.entries.find_by(id: params[:id])
+    end
+
+    def entry_params
+        params.require(:entry).permit(:date, :content, :journal_id, :user_id, :mood_ids =>[])
+    end
 end

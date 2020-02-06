@@ -11,10 +11,7 @@ class MoodsController < ApplicationController
 
     def show
         if user_signed_in? 
-            #redirect_to moods_path
-            @moods = Mood.all
-            @mood = Mood.new
-            render 'index'
+            @mood = Mood.find_by(id: params[:id])
         else
             redirect_to "welcome/home"
         end

@@ -31,11 +31,10 @@ class JournalsController < ApplicationController
 
     def create
         @journal = current_user.journals.build(journal_params)
-        #@journal.user = current_user
-        if @journal.save
+        if @journal.save 
             redirect_to journal_path(@journal) 
         else
-            render 'index'
+            render :index
         end
     end
 
