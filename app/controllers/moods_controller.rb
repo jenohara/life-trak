@@ -12,6 +12,7 @@ class MoodsController < ApplicationController
     def show
         if user_signed_in? 
             @mood = Mood.find_by(id: params[:id])
+            @entries = @mood.entries.where(user: current_user).order(date: :desc)
         else
             redirect_to "welcome/home"
         end

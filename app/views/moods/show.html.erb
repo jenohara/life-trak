@@ -4,12 +4,12 @@
     </div>
 <h1><%= @mood.mood_type %></h1>
 <h2>These are all the entries you've made using this mood:</h2>
-    <% @mood.entries.each do |entry| %>
+    <% @entries.each do |entry| %>
         <h3>Date: <%= entry.date %></h3>
         <h3>Content:</h3>
             <p><%= entry.content %></p>
         <p>The moods for this entry are:
-        <% entry.moods.each do|mood| %>
+        <% entry.moods.each do |mood| %>
             <%= mood.mood_type %> 
         <% end %></p>
         <%= link_to "Edit entry", edit_entry_path(entry) %> | <%= link_to "Delete Entry", entry_path(entry), method: :delete, data: {confirm: "Are you sure?"} %>
