@@ -2,7 +2,7 @@
 <div class="journal_links">
 <%= link_to 'All journals', journals_path %> | 
 <%= link_to 'Edit journal details', edit_journal_path %> | 
-<%= link_to 'Delete journal', @journal, :method => :delete, :confirm => 'Are you sure?'%> | 
+<%= link_to 'Delete journal', @journal, :method => :delete, data: {confirm: "Are you sure?"}%> | 
 <%= link_to 'New entry', new_journal_entry_path(@journal) %> | 
 <%= link_to 'All Entries', journal_entries_path(@journal) %><br>
 </div>
