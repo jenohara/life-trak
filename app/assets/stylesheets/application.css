@@ -29,3 +29,9 @@
     margin: auto;
 }
 
+  
+  #error_explanation {
+      color: red;
+  }
+
+  
