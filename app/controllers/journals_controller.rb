@@ -1,28 +1,18 @@
 class JournalsController < ApplicationController
     before_action :set_journal, only: [:show, :edit, :update, :destroy]
-    before_action :authenticate_user!
 
     def index
-        if user_signed_in?
-            @journals = current_user.journals.all
-            @journal = Journal.new
-        else
-            redirect_to "welcome/home"
-        end
+        @journals = current_user.journals.all
+        @journal = Journal.new
     end
 
     def show
-        if user_signed_in?
-            set_journal
-            if @journal.entries.any?
-                @entries = @journal.entries.all 
-            else
-                @entries = []
-            end
-            @entry =  @journal.entries.new
+        if @journal.entries.any?
+            @entries = @journal.entries.all 
         else
-            redirect_to "welcome/home"
+            @entries = []
         end
+        @entry =  @journal.entries.new
     end
 
     def new
@@ -39,24 +29,17 @@ class JournalsController < ApplicationController
     end
 
     def edit
-        set_journal
     end
 
     def update
-        if user_signed_in?
-            set_journal
-                if @journal.update(journal_params)
-                    redirect_to @journal
-                 else
-                    render :edit
-                end 
-        else
-            redirect_to "welcome/home"
-        end
+        if @journal.update(journal_params)
+            redirect_to @journal
+            else
+            render :edit
+        end 
     end
 
     def destroy
-        set_journal
         @journal.destroy
         redirect_to journals_path
     end
