@@ -12,8 +12,7 @@ class EntriesController < ApplicationController
 
     def new
         if params[:journal_id] && @journal = Journal.find_by(id: params[:journal_id]) 
-            @entry = @journal.entries.build  
-            @new_mood = Mood.new  
+            @entry = @journal.entries.build   
         else
             @entry = Entry.new 
         end
